@@ -70,3 +70,4 @@ fetchWeather('Greater Noida');
 fetchWeather('Ghaziabad');
 fetchWeather("newYork");
 fetchWeather("mumbai");
+fetchWeather("london");
