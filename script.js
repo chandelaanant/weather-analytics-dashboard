@@ -69,3 +69,4 @@ fetchWeather('Greater Noida');
 // Additional functionality to update the DOM with fetched data can be added here.
 fetchWeather('Ghaziabad');
 fetchWeather("newYork");
+fetchWeather("mumbai");
