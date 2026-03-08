@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MapTea</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Live Weather DashBoard</h1>
+      </header>
+
+      <section class="search-section">
+        <form>
+          <input id="city-input" type="text" placeholder="Enter a city name:" />
+          <input id="date-input" type="date" />
+          <button type="submit">search</button>
+        </form>
+      </section>
+
+      <section id="current-weather" class="current-weather-section">
+        <h2 id="city-name-and-date">City-Name-(Date)</h2>
+        <div>
+          <p id="temperature">temperature:</p>
+          <p id="humidity">Humidity:</p>
+          <p id="wind-speed">Speed:</p>
+        </div>
+      </section>
+
+      <section id="forecast" class="forecast-section">
+        <h2 id="5-day-forecast">5-day forecast</h2>
+        <div id="forecast-container" class="forecast-cards-container"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "weatherdashboardbyanant",
+  "version": "1.0.0",
+  "description": "this is me creating a weather dashboard as my first web development project, which will show the current weather dAashboard as well as 5 day forecast of the particular city in question...",
+  "license": "ISC",
+  "author": "Anant Chandela",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
