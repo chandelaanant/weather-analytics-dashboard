@@ -1,0 +1,182 @@
+/* Import the Poppins font from Google Fonts. We're importing multiple weights (400, 500, 700) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+/*
+  This is a modern CSS reset. It's a great starting point for any new project.
+  It ensures a more consistent baseline across different browsers.
+*/
+* {
+  box-sizing: border-box;
+}
+body,
+h1,
+h2,
+p,
+form {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+}
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ========================================= */
+/*      CUSTOM PROPERTIES / VARIABLES        */
+/* ========================================= */
+
+:root {
+  /* Color Palette */
+  --color-primary-dark: #3292f1;
+  --color-primary-light: #47a3dc;
+  --color-bg-main: #ecf0f1;
+  --color-bg-card: #ffffff;
+  --color-text-dark: #34495e;
+  --color-text-light: #ffffff;
+  --color-border: #bdc3c7;
+
+  /* Font Families */
+  --font-family-main: "Poppins", sans-serif;
+
+  /* Spacing & Borders */
+  --spacing-unit: 1rem;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+}
+
+/* ========================================= */
+/*      GLOBAL BASE STYLES                   */
+/* ========================================= */
+
+body {
+  font-family: var(--font-family-main);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-dark);
+}
+
+header {
+  text-align: center;
+  background-color: var(--color-primary-dark);
+  color: black;
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+}
+
+.search-section input {
+  width: 100%;
+  padding: var(--spacing-unit);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.search-section input:focus {
+  width: 100%;
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.25);
+}
+
+.search-section button {
+  width: 100%;
+  display: block;
+  margin-top: var(--spacing-unit);
+  padding: var(--spacing-unit);
+  background-color: var(--color-primary-light);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.search-section button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.current-weather-section {
+  background-color: var(--color-bg-card);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  padding: calc(var(--spacing-unit) * 2);
+}
+
+.current-weather-section h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-unit);
+}
+
+.current-weather-section div {
+  font-size: 1.5rem;
+  margin-bottom: calc(var(--spacing-unit) / 2);
+}
+
+.current-weather-section p:last-child {
+  margin-bottom: 0;
+}
+
+.forecast-section {
+  background-color: var(--color-bg-card);
+  border-radius: var(--border-radius-md);
+  padding: calc(var(--spacing-unit) * 2);
+  border: 1px solid var(--color-border);
+  margin-bottom: 0;
+}
+
+.forecast-section h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-unit);
+}
+
+.forecast-cards-container {
+  display: flex;
+  gap: var(--spacing-unit);
+}
+
+.forecast-card {
+  background-color: var(--color-primary-dark);
+  padding: var(--spacing-unit);
+  border-radius: var(--border-radius-md);
+  flex: 1;
+  text-align: center;
+}
+
+.forecast-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: calc(var(--spacing-unit) / 2);
+}
+
+.forecast-card .weather-icon {
+  margin: 0;
+  height: 50px;
+  width: 50px;
+  background-color: var(--color-bg-card);
+}
+
+.forecast-card p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--color-text-light);
+}
+main {
+  background-color: var(--color-text-light);
+  display: grid;
+  place-items: center;
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 2);
+  max-width: 1200px;
+  margin-inline: auto;
+}
