@@ -62,11 +62,32 @@ const fetchWeather = async (city) => {
         console.error('Error fetching weather data:', error);
         console.log('Please check the city name or try again later.');
     }
+    try {
+        const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+        const responses = await Promise.all([
+            fetch(currentWeatherUrl),
+            fetch(forecastUrl),
+        ]);
+
+        for (const response of responses) {
+            if (!response.ok) {
+                throw new Error('City not found or API error.');
+            }
+        }
+        const [currentWeather, forecast] = await Promise.all(
+            responses.map(response => response.json())
+        );
+
+        displayCurrentWeather(currentWeather);
+        displayForecast(forecast);
+
+    } catch (error) {
+        console.errror('Failed to fetcgh weather data:', error);
+    }
 };
 fetchWeather('Greater Noida');
 
 
 // Additional functionality to update the DOM with fetched data can be added here.
-fetchWeather('Ghaziabad');
-fetchWeather("newYork");
-fetchWeather("delhi");
+
