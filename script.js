@@ -1,4 +1,7 @@
 const apiKey = '1fe1702c032c42f2859a83b090a479b6';
+
+const searchFormEl = document.querySelector('#search-form');
+const searchInputEl = document.querySelector('#city-input');
 const tempEl = document.querySelector('#temperature');
 const humidityEl = document.querySelector('#humidity');
 const windEl = document.querySelector('#wind-speed');
@@ -83,10 +86,25 @@ const fetchWeather = async (city) => {
         displayForecast(forecast);
 
     } catch (error) {
-        console.errror('Failed to fetcgh weather data:', error);
+        console.errror('Failed to fetch weather data:', error);
     }
 };
-fetchWeather('Greater Noida');
+searchFormEl.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const city = searchInputEl.value.trim();
+    if (city) {
+        fetchWeather(city);
+        searchInputEl.value = ' ';
+    } else {
+        alert("enter a city name!!!");
+        return;
+    }
+
+
+    console.log("form submitted!!! and default action prevented!!!");
+})
+
+
 
 
 // Additional functionality to update the DOM with fetched data can be added here.
