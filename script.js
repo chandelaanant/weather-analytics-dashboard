@@ -8,7 +8,7 @@ const humidityEl = document.querySelector('#humidity');
 const windEl = document.querySelector('#wind-speed');
 const cityEl = document.querySelector('#city-name-and-date');
 const forecastContainerEl = document.querySelector('#forecast-container');
-
+loaderEl.classList.add('hidden');
 const displayCurrentWeather = (data) => {
     const currentDate = new Date().toLocaleDateString();
     cityEl.textContent = `${data.name} (${currentDate})`;
@@ -45,6 +45,7 @@ const displayForecast = (forecastList) => {
 const fetchWeather = async (city) => {
     try {
         loaderEl.classList.remove('hidden');
+        console.log("loader off ho gya!!!!");
         const cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         const response = await fetch(cityUrl);
         if (!response.ok) {
@@ -89,6 +90,8 @@ const fetchWeather = async (city) => {
 
     } catch (error) {
         console.errror('Failed to fetch weather data:', error);
+    } finally {
+        loaderEl.classList.add('hidden');
     }
 };
 searchFormEl.addEventListener('submit', (event) => {
