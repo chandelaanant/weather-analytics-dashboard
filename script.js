@@ -2,6 +2,7 @@ const apiKey = '1fe1702c032c42f2859a83b090a479b6';
 
 const searchFormEl = document.querySelector('#search-form');
 const searchInputEl = document.querySelector('#city-input');
+const loaderEl = document.querySelector('#loader');
 const tempEl = document.querySelector('#temperature');
 const humidityEl = document.querySelector('#humidity');
 const windEl = document.querySelector('#wind-speed');
@@ -43,6 +44,7 @@ const displayForecast = (forecastList) => {
 
 const fetchWeather = async (city) => {
     try {
+        loaderEl.classList.remove('hidden');
         const cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         const response = await fetch(cityUrl);
         if (!response.ok) {
