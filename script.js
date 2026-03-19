@@ -3,6 +3,7 @@ const apiKey = '1fe1702c032c42f2859a83b090a479b6';
 const searchFormEl = document.querySelector('#search-form');
 const searchInputEl = document.querySelector('#city-input');
 const loaderEl = document.querySelector('#loader');
+const errorContainerEl = document.querySelector('#error-container');
 const tempEl = document.querySelector('#temperature');
 const humidityEl = document.querySelector('#humidity');
 const windEl = document.querySelector('#wind-speed');
@@ -63,43 +64,48 @@ const fetchWeather = async (city) => {
         const forecastData = await forecastResponse.json();
         displayCurrentWeather(weatherData);
         displayForecast(forecastData.list);
+        loaderEl.classList.add('hidden');
 
     } catch (error) {
         console.error('Error fetching weather data:', error);
         console.log('Please check the city name or try again later.');
     }
-    try {
-        const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
-        const responses = await Promise.all([
-            fetch(currentWeatherUrl),
-            fetch(forecastUrl),
-        ]);
 
-        for (const response of responses) {
-            if (!response.ok) {
-                throw new Error('City not found or API error.');
-            }
-        }
-        const [currentWeather, forecast] = await Promise.all(
-            responses.map(response => response.json())
-        );
-
-        displayCurrentWeather(currentWeather);
-        displayForecast(forecast);
-
-    } catch (error) {
-        console.errror('Failed to fetch weather data:', error);
-    } finally {
-        loaderEl.classList.add('hidden');
-    }
+    /* try {
+         const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+         const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+         const responses = await Promise.all([
+             fetch(currentWeatherUrl),
+             fetch(forecastUrl),
+         ]);
+ 
+         for (const response of responses) {
+             if (!response.ok) {
+                 throw new Error('City not found or API error.');
+             }
+         }
+         const [currentWeather, forecast] = await Promise.all(
+             responses.map(response => response.json())
+         );
+ 
+         displayCurrentWeather(currentWeather);
+         displayForecast(forecast);
+ 
+     } catch (error) {
+         console.errror('Failed to fetch weather data:', error);
+         errorContainerEl.textContent = 'Sorry,the city could not be found, please try again.';
+         loaderEl.classList.remove('hidden');
+ 
+     } finally {
+         loaderEl.classList.add('hidden');
+     }*/
 };
 searchFormEl.addEventListener('submit', (event) => {
     event.preventDefault();
     const city = searchInputEl.value.trim();
     if (city) {
         fetchWeather(city);
-        searchInputEl.value = ' ';
+        searchInputEl.value = '';
     } else {
         alert("enter a city name!!!");
         return;
