@@ -18,7 +18,6 @@ const displayCurrentWeather = (data) => {
     windEl.textContent = `Wind Speed: ${data.wind.speed} m/s`;
 };
 const displayForecast = (forecastList) => {
-    forecastContainerEl.innerHTML = '';
     for (let i = 0; i < forecastList.length; i += 8) {
         const dailyForecast = forecastList[i];
         const card = document.createElement('div');
@@ -45,6 +44,12 @@ const displayForecast = (forecastList) => {
 
 const fetchWeather = async (city) => {
     try {
+        errorContainerEl.classList.add('hidden');
+        forecastContainerEl.innerHTML = '';
+        tempEl.innerHTML = '';
+        cityEl.innerHTML = '';
+        humidityEl.innerHTML = '';
+        windEl.innerHTML = '';
         loaderEl.classList.remove('hidden');
         console.log("loader off ho gya!!!!");
         const cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -64,12 +69,15 @@ const fetchWeather = async (city) => {
         const forecastData = await forecastResponse.json();
         displayCurrentWeather(weatherData);
         displayForecast(forecastData.list);
-        loaderEl.classList.add('hidden');
 
     } catch (error) {
         console.error('Error fetching weather data:', error);
         console.log('Please check the city name or try again later.');
-    }
+        errorContainerEl.textContent = "choose the right city,try again!!!";
+        errorContainerEl.classList.remove('hidden');
+    } finally {
+        loaderEl.classList.add('hidden');
+    };
 
     /* try {
          const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -113,8 +121,7 @@ searchFormEl.addEventListener('submit', (event) => {
 
 
     console.log("form submitted!!! and default action prevented!!!");
-})
-
+});
 
 
 
