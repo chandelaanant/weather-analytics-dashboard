@@ -7,39 +7,48 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <header>
+      <h1>Live Weather Dashboard</h1>
+    </header>
+
     <main>
-      <header>
-        <h1>Live Weather DashBoard</h1>
-      </header>
-      <div id="loader" class="loader">loading...</div>
-      <div id="loader" class="loader hidden">loading...</div>
+      <section class="search-section">
+        <form id="search-form">
+          <input id="city-input" type="text" placeholder="Enter a city name:" />
+          <input id="date-input" type="date" />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+
+      <div id="loader" class="loader hidden">Loading...</div>
       <div
         id="error-container"
         class="error-message hidden"
         aria-live="polite"
       ></div>
-      <section class="search-section"></section>
-      
-        <form id="search-form">
-          <input id="city-input" type="text" placeholder="Enter a city name:" />
-          <input id="date-input" type="date" />
-          <button type="submit">search</button>
-        </form>
-      </section>
 
-      <section id="current-weather" class="current-weather-section">
-        <h2 id="city-name-and-date">City-Name-(Date)</h2>
-        <div>
-          <p id="temperature">temperature:</p>
-          <p id="humidity">Humidity:</p>
-          <p id="wind-speed">Speed:</p>
+      <div class="content-layout">
+        <aside id="history-section">
+          <h2>Recent Searches</h2>
+          <div id="history-container"></div>
+        </aside>
+
+        <div class="weather-display">
+          <section id="current-weather" class="current-weather-section">
+            <h2 id="city-name-and-date">City-Name-(Date)</h2>
+            <div>
+              <p id="temperature">Temperature:</p>
+              <p id="humidity">Humidity:</p>
+              <p id="wind-speed">Wind Speed:</p>
+            </div>
+          </section>
+
+          <section id="forecast" class="forecast-section">
+            <h2>5-Day Forecast</h2>
+            <div id="forecast-container" class="forecast-cards-container"></div>
+          </section>
         </div>
-      </section>
-
-      <section id="forecast" class="forecast-section">
-        <h2 id="5-day-forecast">5-day forecast</h2>
-        <div id="forecast-container" class="forecast-cards-container"></div>
-      </section>
+      </div>
     </main>
 
     <script src="script.js"></script>
